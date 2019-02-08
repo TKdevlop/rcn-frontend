@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+  .row1 {
+    max-width: 80px;
+  }
+  .row2 {
+    max-width: 50px;
+  }
+}

@@ -11,7 +11,8 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+
+import "./panel.css";
 const styles = theme => ({
   root: {
     width: "100%"
@@ -68,32 +69,34 @@ class ControlledExpansionPanels extends React.Component {
                   {user.name} ({user.phoneNo})
                 </Typography>
                 <Typography className={classes.secondaryHeading}>
-                  VCNo. {user.vcNo}
+                  VCNo {user.vcNo}
                 </Typography>
               </ExpansionPanelSummary>
               <ExpansionPanelDetails>
-                <Paper className={classes.root}>
-                  <Table className={classes.table}>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Price</TableCell>
-                        <TableCell align="right">Type (channel/pack)</TableCell>
+                <Table className="table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell className="row1">Name</TableCell>
+                      <TableCell className="row2" align="right">
+                        Price
+                      </TableCell>
+                      <TableCell className="row3" align="right">
+                        Type
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {user.channels.map(row => (
+                      <TableRow key={row.id}>
+                        <TableCell component="th" scope="row">
+                          {row.name}
+                        </TableCell>
+                        <TableCell align="right">{row.price}</TableCell>
+                        <TableCell align="right">{row.type}</TableCell>
                       </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {user.channels.map(row => (
-                        <TableRow key={row.id}>
-                          <TableCell component="th" scope="row">
-                            {row.name}
-                          </TableCell>
-                          <TableCell align="right">{row.price}</TableCell>
-                          <TableCell align="right">{row.type}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </Paper>
+                    ))}
+                  </TableBody>
+                </Table>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           );
